@@ -18,7 +18,7 @@ This includes the following:
 
 All extension repositories in the Paperback Community GitHub Organization use this one as their base template.
 
-## Templates
+## Available Extensions
 
 ### Content Template
 
@@ -28,9 +28,21 @@ Template that shows the functionality of content providing extensions.
 
 Template that shows the functionality of tracker providing extensions.
 
-> [!NOTE]  
+> [!NOTE]
 > This template still has to be made.
 
 ## Installation
 
-Add this repository to Paperback through [this link](https://paperback-community.github.io/extension-templates).
+Add this repository to Paperback by visiting [this webpage][installation-webpage].
+
+## Support Guidelines
+
+Need help? Check out our [Support Guidelines][support-guidelines] for assistance.
+
+## Contributing Guidelines
+
+Want to contribute? Read our [Contributing Guidelines][contributing-guidelines] to get started.
+
+[installation-webpage]: https://paperback-community.github.io/template-extensions/0.9/stable
+[support-guidelines]: https://github.com/paperback-community/template-extensions/blob/0.9/stable/.github/SUPPORT.md
+[contributing-guidelines]: https://github.com/paperback-community/template-extensions/blob/0.9/stable/.github/CONTRIBUTING.md

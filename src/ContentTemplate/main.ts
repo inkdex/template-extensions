@@ -1,8 +1,7 @@
 // TODO:
 // - Add the English name to the title view
 // - Add additional info to the title view
-// - Add share button support to the title view
-// - Add async search filters
+// - Make getChapterDetails only return new chapters
 // - Fix exclude search
 
 import {
@@ -22,6 +21,7 @@ import {
   PaperbackInterceptor,
   Request,
   Response,
+  SearchFilter,
   SearchQuery,
   SearchResultItem,
   SearchResultsProviding,
@@ -77,18 +77,6 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
   async initialise(): Promise<void> {
     this.mainRateLimiter.registerInterceptor();
     this.mainInterceptor.registerInterceptor();
-
-    // Template search filter
-    Application.registerSearchFilter({
-      id: "search-filter-template",
-      type: "dropdown",
-      options: [
-        { id: "include", value: "include" },
-        { id: "exclude", value: "exclude" },
-      ],
-      value: "Exclude",
-      title: "Search Filter Template",
-    });
   }
 
   // Implements the settings form, check SettingsForm.ts for more info
@@ -173,6 +161,22 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
         return result;
       }),
     };
+  }
+
+  // Populate search filters
+  async getSearchFilters(): Promise<SearchFilter[]> {
+    return [
+      {
+        id: "search-filter-template",
+        type: "dropdown",
+        options: [
+          { id: "include", value: "include" },
+          { id: "exclude", value: "exclude" },
+        ],
+        value: "Exclude",
+        title: "Search Filter Template",
+      },
+    ];
   }
 
   // Populates search
@@ -295,6 +299,7 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
             rating: content[i].rating,
             tagGroups: [genres, tags],
             artworkUrls: [content[i].thumbnailUrl],
+            shareUrl: content[i].url,
           },
         };
       }

@@ -3,7 +3,7 @@ import { ContentRating, SourceInfo, SourceIntents } from "@paperback/types";
 export default {
   name: "Content Template",
   description: "Content template extension",
-  version: "1.0.0",
+  version: "1.0.0-alpha.1",
   icon: "icon.png",
   language: "en",
   contentRating: ContentRating.EVERYONE,
