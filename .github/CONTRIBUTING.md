@@ -7,16 +7,16 @@ We encourage and value all types of contributions. Refer to the [Table of Conten
 ## Table of Contents <!-- omit in toc -->
 
 - [Development Contributions](#development-contributions)
-  - [Project Conventions](#project-conventions)
-  - [Development and Build Process](#development-and-build-process)
-    - [Commands](#commands)
-    - [Adding Extensions](#adding-extensions)
-  - [Open Tasks](#open-tasks)
+    - [Project Conventions](#project-conventions)
+    - [Development and Build Process](#development-and-build-process)
+        - [Commands](#commands)
+        - [Adding Extensions](#adding-extensions)
+    - [Open Tasks](#open-tasks)
 - [Documentation Contributions](#documentation-contributions)
 - [Support Contributions](#support-contributions)
-  - [Answering Questions](#answering-questions)
-  - [Validating Bug Reports](#validating-bug-reports)
-  - [Contributing to Enhancement Suggestions](#contributing-to-enhancement-suggestions)
+    - [Answering Questions](#answering-questions)
+    - [Validating Bug Reports](#validating-bug-reports)
+    - [Contributing to Enhancement Suggestions](#contributing-to-enhancement-suggestions)
 
 ## Development Contributions
 

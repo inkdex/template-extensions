@@ -8,11 +8,11 @@ Refer to the [Table of Contents](#table-of-contents) to explore the various type
 
 - [I Have a Question](#i-have-a-question)
 - [Reporting Bugs](#reporting-bugs)
-  - [Before Submitting a Bug Report](#before-submitting-a-bug-report)
-  - [Submitting a Good Bug Report](#submitting-a-good-bug-report)
+    - [Before Submitting a Bug Report](#before-submitting-a-bug-report)
+    - [Submitting a Good Bug Report](#submitting-a-good-bug-report)
 - [Suggesting Enhancements](#suggesting-enhancements)
-  - [Before Submitting an Enhancement Suggestion](#before-submitting-an-enhancement-suggestion)
-  - [Submitting a Good Enhancement Suggestion](#submitting-a-good-enhancement-suggestion)
+    - [Before Submitting an Enhancement Suggestion](#before-submitting-an-enhancement-suggestion)
+    - [Submitting a Good Enhancement Suggestion](#submitting-a-good-enhancement-suggestion)
 
 ## I Have a Question
 
@@ -34,18 +34,18 @@ This section guides you through submitting a bug report for an extension or its 
 A good bug report shouldn't leave others needing to chase you up for more information. Therefore, we ask you to investigate carefully, collect information and describe the issue in detail in your report. Please complete the following steps in advance to help us fix any potential bug as fast as possible.
 
 1. Check if the bug is actually related to an extension or its website:
-   - Is it an app issue (e.g., crashing when opening the library page)? If so, reach out to the app developer(s) instead ([more info][app-support]).
-   - Could the problem be on your end (e.g., a network issue)?
+    - Is it an app issue (e.g., crashing when opening the library page)? If so, reach out to the app developer(s) instead ([more info][app-support]).
+    - Could the problem be on your end (e.g., a network issue)?
 2. Make sure to search the internet to see if users outside of the GitHub Community or [Discord server][discord-server] have discussed the issue.
 3. To see if other users have experienced (and potentially already solved) the same bug you are having, check if there is not already a bug report existing for your bug in the [issue tracker][issue-tracker-bugs] or [Discord server support channel][discord-server-support-channel]. If there is, add a comment to the existing one instead of opening a new one.
 4. Collect the following information about the bug:
-   - App version (e.g. v0.9.1).
-   - Extension and their version(s) (e.g. MadaraDex 1.1.3).
-   - Website its URL(s) (e.g. https://madaradex.org).
-   - Detailed description of the bug, including what you expected to actually happen
-   - Steps to reproduce the bug.
-   - _(Optional)_ Title and chapters (e.g. One Piece, Chapter 221).
-   - _(Optional)_ Video and/or screenshot.
+    - App version (e.g. v0.9.1).
+    - Extension and their version(s) (e.g. MadaraDex 1.1.3).
+    - Website its URL(s) (e.g. https://madaradex.org).
+    - Detailed description of the bug, including what you expected to actually happen.
+    - Steps to reproduce the bug.
+    - _(Optional)_ Title and chapters (e.g. One Piece, Chapter 221).
+    - _(Optional)_ Video and/or screenshot.
 
 ### Submitting a Good Bug Report
 

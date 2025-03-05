@@ -1,33 +1,33 @@
 {
-  "name": "template-extensions",
-  "repositoryName": "Template Extensions",
-  "description": "Paperback extensions designed as templates to help developers get started quickly. Maintained by the Paperback Community.",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "lint": "eslint --fix",
-    "lint:check": "eslint",
-    "format": "prettier --write '**/*{.md,.yaml,.json,.js,.ts}'",
-    "format:check": "prettier --check '**/*{.md,.yaml,.json,.js,.ts}'",
-    "tsc": "tsc --project tsconfig.json --noEmit",
-    "bundle": "paperback-cli bundle",
-    "serve": "paperback-cli serve",
-    "logcat": "paperback-cli logcat",
-    "dev": "nodemon -w \"./src/**/*.ts\" -e \"ts\" -x \"npm run serve\"",
-    "test": "npm run tsc && npm run lint:check && npm run format:check && npm run bundle",
-    "prepare": "husky"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
-    "@paperback/toolchain": "^1.0.0-alpha.39",
-    "@paperback/types": "^1.0.0-alpha.39",
-    "@types/eslint": "^9.6.1",
-    "eslint": "^9.21.0",
-    "husky": "^9.1.7",
-    "nodemon": "^3.1.9",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.26.0"
-  }
+    "name": "template-extensions",
+    "repositoryName": "Template Extensions",
+    "description": "Paperback extensions designed as templates to help developers get started quickly. Maintained by the Paperback Community.",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "lint": "eslint --fix",
+        "lint:check": "eslint",
+        "format": "prettier --write '**/*{.md,.yaml,.json,.js,.ts}'",
+        "format:check": "prettier --check '**/*{.md,.yaml,.json,.js,.ts}'",
+        "tsc": "tsc --project tsconfig.json --noEmit",
+        "bundle": "paperback-cli bundle",
+        "serve": "paperback-cli serve",
+        "logcat": "paperback-cli logcat",
+        "dev": "nodemon -w \"./src/**/*.ts\" -e \"ts\" -x \"npm run serve\"",
+        "test": "npm run tsc && npm run lint:check && npm run format:check && npm run bundle",
+        "prepare": "husky"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.21.0",
+        "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
+        "@paperback/toolchain": "^1.0.0-alpha.39",
+        "@paperback/types": "^1.0.0-alpha.39",
+        "@types/eslint": "^9.6.1",
+        "eslint": "^9.21.0",
+        "husky": "^9.1.7",
+        "nodemon": "^3.1.9",
+        "prettier": "^3.5.3",
+        "typescript": "^5.8.2",
+        "typescript-eslint": "^8.26.0"
+    }
 }
