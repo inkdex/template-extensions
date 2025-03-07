@@ -24,7 +24,7 @@ export default tseslint.config(
             "@typescript-eslint/require-await": "off",
             "@typescript-eslint/no-unused-vars": [
                 "error",
-                { varsIgnorePattern: "^_$" },
+                { varsIgnorePattern: "^_" },
             ],
         },
     },
