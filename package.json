@@ -1,6 +1,6 @@
 {
     "name": "template-extensions",
-    "repositoryName": "Template Extensions",
+    "repositoryName": "Template Extensions (0.9)",
     "description": "Paperback extensions designed as templates to help developers get started quickly. Maintained by the Paperback Community.",
     "private": true,
     "type": "module",
