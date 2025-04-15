@@ -9,7 +9,7 @@ This includes the following:
 - ESLint config
 - Prettier config
 - Dependabot config
-- nodemon development setup
+- Development setup
 - Husky pre-push hook
 - GitHub CI/CD Actions
 - VSCode config files (settings + extensions)

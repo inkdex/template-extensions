@@ -5,15 +5,15 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "lint": "eslint --fix",
-        "lint:check": "eslint",
-        "format": "prettier --write '**/*{.md,.yml,.yaml,.json,.js,.ts}'",
-        "format:check": "prettier --check '**/*{.md,.yml,.yaml,.json,.js,.ts}'",
+        "lint": "eslint --fix --cache --cache-location 'node_modules/.cache/eslint/.eslint-cache'",
+        "lint:check": "eslint --cache --cache-location 'node_modules/.cache/eslint/.eslint-cache'",
+        "format": "prettier --write '**/*{.md,.yml,.yaml,.json,.js,.ts}' --cache",
+        "format:check": "prettier --check '**/*{.md,.yml,.yaml,.json,.js,.ts}' --cache",
         "tsc": "tsc --project tsconfig.json --noEmit",
         "bundle": "paperback-cli bundle",
         "serve": "paperback-cli serve",
         "logcat": "paperback-cli logcat",
-        "dev": "nodemon -w \"./src/**/*.ts\" -e \"ts\" -x \"npm run serve\"",
+        "dev": "paperback-cli serve --watch",
         "test": "npm run tsc && npm run lint:check && npm run format:check && npm run bundle",
         "prepare": "husky"
     },
@@ -25,7 +25,6 @@
         "@types/eslint": "^9.6.1",
         "eslint": "^9.24.0",
         "husky": "^9.1.7",
-        "nodemon": "^3.1.9",
         "prettier": "^3.5.3",
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.30.1"
