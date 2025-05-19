@@ -3,6 +3,7 @@
 import {
     ButtonRow,
     Form,
+    FormSectionElement,
     InputRow,
     LabelRow,
     NavigationRow,
@@ -11,7 +12,7 @@ import {
 } from "@paperback/types";
 
 export class SettingsForm extends Form {
-    override getSections(): Application.FormSectionElement[] {
+    override getSections(): FormSectionElement[] {
         return [
             Section("playground", [
                 NavigationRow("playground", {
@@ -51,7 +52,7 @@ class SourceUIPlaygroundForm extends Form {
     rowsVisible = new State(this, false);
     items: string[] = [];
 
-    override getSections(): Application.FormSectionElement[] {
+    override getSections(): FormSectionElement[] {
         return [
             Section("hideStuff", [
                 ToggleRow("toggle", {

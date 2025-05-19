@@ -1,7 +1,7 @@
 {
     "name": "template-extensions",
     "repositoryName": "Template Extensions (0.9)",
-    "description": "Paperback extensions designed as templates to help developers get started quickly. Maintained by the Paperback Community.",
+    "description": "Paperback extensions designed as templates to help developers get started quickly. Maintained by Inkdex.",
     "private": true,
     "type": "module",
     "scripts": {
@@ -18,15 +18,15 @@
         "prepare": "husky"
     },
     "devDependencies": {
-        "@eslint/js": "^9.24.0",
+        "@eslint/js": "^9.27.0",
         "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
-        "@paperback/toolchain": "^1.0.0-alpha.39",
-        "@paperback/types": "^1.0.0-alpha.39",
+        "@paperback/toolchain": "^1.0.0-alpha.52",
+        "@paperback/types": "^1.0.0-alpha.52",
         "@types/eslint": "^9.6.1",
-        "eslint": "^9.24.0",
+        "eslint": "^9.27.0",
         "husky": "^9.1.7",
         "prettier": "^3.5.3",
         "typescript": "^5.8.3",
-        "typescript-eslint": "^8.30.1"
+        "typescript-eslint": "^8.32.1"
     }
 }

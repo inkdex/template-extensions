@@ -31,7 +31,7 @@ import {
     TagSection,
 } from "@paperback/types";
 // Template content
-import content from "../../content.json";
+import content from "./content.json";
 // Extension settings file
 import { SettingsForm } from "./SettingsForm";
 
