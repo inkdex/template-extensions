@@ -10,7 +10,6 @@ import {
     LabelRow,
     NavigationRow,
     Section,
-    SelectorID,
     ToggleRow,
 } from "@paperback/types";
 

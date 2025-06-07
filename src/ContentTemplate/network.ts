@@ -1,4 +1,8 @@
-import { PaperbackInterceptor, Request, Response } from "@paperback/types";
+import {
+    PaperbackInterceptor,
+    type Request,
+    type Response,
+} from "@paperback/types";
 
 // Intercepts all the requests and responses and allows you to make changes to them
 export class MainInterceptor extends PaperbackInterceptor {

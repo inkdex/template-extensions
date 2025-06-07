@@ -9,7 +9,7 @@
         "lint:check": "eslint --cache --cache-location 'node_modules/.cache/eslint/.eslint-cache'",
         "format": "prettier --write '**/*{.md,.yml,.yaml,.json,.js,.ts}' --cache",
         "format:check": "prettier --check '**/*{.md,.yml,.yaml,.json,.js,.ts}' --cache",
-        "tsc": "tsc --project tsconfig.json --noEmit",
+        "tsc": "tsc",
         "bundle": "paperback-cli bundle",
         "serve": "paperback-cli serve",
         "logcat": "paperback-cli logcat",
