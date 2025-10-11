@@ -1,8 +1,10 @@
 // TODO:
+// - Fix exclude search
 // - Add the English name to the title view
 // - Add additional info to the title view
 // - Make getChapterDetails only return new chapters
-// - Fix exclude search
+// - Add content settings support to search
+// - Remove the content.json file and switch to cheerio
 
 import {
     BasicRateLimiter,
@@ -18,9 +20,6 @@ import {
     Form,
     MangaProviding,
     PagedResults,
-    PaperbackInterceptor,
-    Request,
-    Response,
     SearchFilter,
     SearchQuery,
     SearchResultItem,
@@ -30,10 +29,12 @@ import {
     Tag,
     TagSection,
 } from "@paperback/types";
-// Template content
+// Template content file
 import content from "./content.json";
-// Extension settings file
-import { SettingsForm } from "./SettingsForm";
+// Extension forms file
+import { SettingsForm } from "./forms";
+// Extension network file
+import { MainInterceptor } from "./network";
 
 // Should match the capabilities which you defined in pbconfig.ts
 type ContentTemplateImplementation = SettingsFormProviding &
@@ -42,24 +43,6 @@ type ContentTemplateImplementation = SettingsFormProviding &
     SearchResultsProviding &
     MangaProviding &
     ChapterProviding;
-
-// Intercepts all the requests and responses and allows you to make changes to them
-class MainInterceptor extends PaperbackInterceptor {
-    override async interceptRequest(request: Request): Promise<Request> {
-        return request;
-    }
-
-    override async interceptResponse(
-        request: Request,
-        response: Response,
-        data: ArrayBuffer,
-    ): Promise<ArrayBuffer> {
-        void request;
-        void response;
-
-        return data;
-    }
-}
 
 // Main extension class
 export class ContentTemplateExtension implements ContentTemplateImplementation {

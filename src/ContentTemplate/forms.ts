@@ -1,4 +1,6 @@
-// TODO: Rework
+// TODO:
+// - Remove the State class
+// - Add extension specific settings
 
 import {
     ButtonRow,
@@ -8,6 +10,7 @@ import {
     LabelRow,
     NavigationRow,
     Section,
+    SelectorID,
     ToggleRow,
 } from "@paperback/types";
 
