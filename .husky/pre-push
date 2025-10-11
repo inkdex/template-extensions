@@ -1,1 +1,1 @@
-npm test
+deno task test

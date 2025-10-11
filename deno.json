@@ -1,0 +1,28 @@
+{
+  "repositoryName": "Template Extensions (0.9)",
+  "description": "Paperback extensions designed as templates to help developers get started quickly. Maintained by Inkdex.",
+  "private": true,
+  "tasks": {
+    "bundle": "paperback-cli bundle",
+    "serve": "paperback-cli serve",
+    "logcat": "paperback-cli logcat",
+    "dev": "paperback-cli serve --watch",
+    "test": "deno check && deno lint && deno fmt deno task bundle",
+    "prepare": "husky"
+  },
+  "imports": {
+    "@paperback/toolchain": "npm:@paperback/toolchain@^1.0.0-alpha.57",
+    "@paperback/types": "npm:@paperback/types@^1.0.0-alpha.57",
+    "husky": "npm:husky@^9.1.7"
+  },
+  "nodeModulesDir": "auto",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
