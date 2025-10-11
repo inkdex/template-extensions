@@ -14,7 +14,7 @@
         "serve": "paperback-cli serve",
         "logcat": "paperback-cli logcat",
         "dev": "paperback-cli serve --watch",
-        "test": "npm run tsc && npm run lint:check && npm run format:check && npm run bundle",
+        "test": "bun run tsc && bun run lint:check && bun run format:check && bun run bundle",
         "prepare": "husky"
     },
     "devDependencies": {
