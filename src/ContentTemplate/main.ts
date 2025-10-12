@@ -8,26 +8,26 @@
 
 import {
     BasicRateLimiter,
-    Chapter,
-    ChapterDetails,
-    ChapterProviding,
     ContentRating,
-    DiscoverSection,
-    DiscoverSectionItem,
-    DiscoverSectionProviding,
     DiscoverSectionType,
-    Extension,
     Form,
-    MangaProviding,
-    PagedResults,
-    SearchFilter,
-    SearchQuery,
-    SearchResultItem,
-    SearchResultsProviding,
-    SettingsFormProviding,
-    SourceManga,
-    Tag,
-    TagSection,
+    type Chapter,
+    type ChapterDetails,
+    type ChapterProviding,
+    type DiscoverSection,
+    type DiscoverSectionItem,
+    type DiscoverSectionProviding,
+    type Extension,
+    type MangaProviding,
+    type PagedResults,
+    type SearchFilter,
+    type SearchQuery,
+    type SearchResultItem,
+    type SearchResultsProviding,
+    type SettingsFormProviding,
+    type SourceManga,
+    type Tag,
+    type TagSection,
 } from "@paperback/types";
 // Template content file
 import content from "./content.json";
@@ -132,13 +132,13 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
         return {
             items: Array.from(Array(content.length / j)).map(() => {
                 const result = {
-                    mangaId: content[i].titleId,
-                    title: content[i].primaryTitle
-                        ? content[i].primaryTitle
+                    mangaId: content[i]?.titleId,
+                    title: content[i]?.primaryTitle
+                        ? content[i]?.primaryTitle
                         : "Unknown Title",
-                    subtitle: content[i].secondaryTitles[0],
-                    imageUrl: content[i].thumbnailUrl
-                        ? content[i].thumbnailUrl
+                    subtitle: content[i]?.secondaryTitles[0],
+                    imageUrl: content[i]?.thumbnailUrl
+                        ? content[i]?.thumbnailUrl
                         : "",
                     type: type,
                 } as DiscoverSectionItem;
@@ -174,50 +174,52 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
         const results: PagedResults<SearchResultItem> = { items: [] };
 
         for (let i = 0; i < content.length; i++) {
+            const manga = content[i];
+            if (!manga) continue;
             if (
-                (content[i].primaryTitle
+                (manga.primaryTitle
                     .toLowerCase()
                     .indexOf(query.title.toLowerCase()) != -1 &&
-                    query.filters[0].value == "include") ||
-                (content[i].primaryTitle
+                    query.filters[0]?.value == "include") ||
+                (manga.primaryTitle
                     .toLowerCase()
                     .indexOf(query.title.toLowerCase()) == -1 &&
-                    query.filters[0].value == "exclude")
+                    query.filters[0]?.value == "exclude")
             ) {
-                if (content[i].titleId) {
+                if (manga.titleId) {
                     const result: SearchResultItem = {
-                        mangaId: content[i].titleId,
-                        title: content[i].primaryTitle
-                            ? content[i].primaryTitle
+                        mangaId: manga.titleId,
+                        title: manga.primaryTitle
+                            ? manga.primaryTitle
                             : "Unknown Title",
-                        subtitle: content[i].secondaryTitles[0],
-                        imageUrl: content[i].thumbnailUrl
-                            ? content[i].thumbnailUrl
-                            : "",
+                        subtitle: manga.secondaryTitles[0] ?? "",
+                        imageUrl: manga.thumbnailUrl ? manga.thumbnailUrl : "",
                     };
                     results.items.push(result);
                 }
             } else {
-                for (let j = 0; j < content[i].secondaryTitles.length; j++) {
+                for (let j = 0; j < manga.secondaryTitles.length; j++) {
+                    const secondaryTitles = manga.secondaryTitles[j];
+                    if (!secondaryTitles) continue;
                     if (
-                        (content[i].secondaryTitles[j]
+                        (secondaryTitles
                             .toLowerCase()
                             .indexOf(query.title.toLowerCase()) != -1 &&
-                            query.filters[0].value == "include") ||
-                        (content[i].secondaryTitles[j]
+                            query.filters[0]?.value == "include") ||
+                        (secondaryTitles
                             .toLowerCase()
                             .indexOf(query.title.toLowerCase()) == -1 &&
-                            query.filters[0].value == "exclude")
+                            query.filters[0]?.value == "exclude")
                     ) {
-                        if (content[i].titleId) {
+                        if (manga.titleId) {
                             const result: SearchResultItem = {
-                                mangaId: content[i].titleId,
-                                title: content[i].primaryTitle
-                                    ? content[i].primaryTitle
+                                mangaId: manga.titleId,
+                                title: manga.primaryTitle
+                                    ? manga.primaryTitle
                                     : "Unknown Title",
-                                subtitle: content[i].secondaryTitles[0],
-                                imageUrl: content[i].thumbnailUrl
-                                    ? content[i].thumbnailUrl
+                                subtitle: manga.secondaryTitles[0] ?? "",
+                                imageUrl: manga.thumbnailUrl
+                                    ? manga.thumbnailUrl
                                     : "",
                             };
                             results.items.push(result);
@@ -233,9 +235,11 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
     // Populates the title details
     async getMangaDetails(mangaId: string): Promise<SourceManga> {
         for (let i = 0; i < content.length; i++) {
-            if (mangaId == content[i].titleId) {
+            const manga = content[i];
+            if (!manga) continue;
+            if (mangaId == manga.titleId) {
                 let contentRating: ContentRating;
-                switch (content[i].contentRating) {
+                switch (manga.contentRating) {
                     case "ADULT":
                         contentRating = ContentRating.ADULT;
                         break;
@@ -252,14 +256,14 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
                     title: "Genres",
                     tags: [],
                 };
-                for (let j = 0; j < content[i].genres.length; j++) {
-                    const genre: Tag = {
-                        id: content[i].genres[j]
-                            .toLowerCase()
-                            .replace(" ", "-"),
-                        title: content[i].genres[j],
+                for (let j = 0; j < manga.genres.length; j++) {
+                    const genre = manga.genres[j];
+                    if (!genre) continue;
+                    const tagItem: Tag = {
+                        id: genre.toLowerCase().replace(" ", "-"),
+                        title: genre,
                     };
-                    genres.tags.push(genre);
+                    genres.tags.push(tagItem);
                 }
 
                 const tags: TagSection = {
@@ -267,36 +271,38 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
                     title: "Tags",
                     tags: [],
                 };
-                for (let j = 0; j < content[i].tags.length; j++) {
-                    const tag: Tag = {
-                        id: content[i].tags[j].toLowerCase().replace(" ", "-"),
-                        title: content[i].tags[j],
+                for (let j = 0; j < manga.tags.length; j++) {
+                    const tag = manga.tags[j];
+                    if (!tag) continue;
+                    const tagItem: Tag = {
+                        id: tag.toLowerCase().replace(" ", "-"),
+                        title: tag,
                     };
-                    tags.tags.push(tag);
+                    tags.tags.push(tagItem);
                 }
 
                 return {
                     mangaId,
                     mangaInfo: {
-                        thumbnailUrl: content[i].thumbnailUrl
-                            ? content[i].thumbnailUrl
+                        thumbnailUrl: manga.thumbnailUrl
+                            ? manga.thumbnailUrl
                             : "",
-                        synopsis: content[i].synopsis
-                            ? content[i].synopsis
+                        synopsis: manga.synopsis
+                            ? manga.synopsis
                             : "No synopsis.",
-                        primaryTitle: content[i].primaryTitle
-                            ? content[i].primaryTitle
+                        primaryTitle: manga.primaryTitle
+                            ? manga.primaryTitle
                             : "Unknown Title",
-                        secondaryTitles: content[i].secondaryTitles
-                            ? content[i].secondaryTitles
+                        secondaryTitles: manga.secondaryTitles
+                            ? manga.secondaryTitles
                             : [],
                         contentRating,
-                        status: content[i].status,
-                        author: content[i].author,
-                        rating: content[i].rating,
+                        status: manga.status,
+                        author: manga.author,
+                        rating: manga.rating,
                         tagGroups: [genres, tags],
-                        artworkUrls: [content[i].thumbnailUrl],
-                        shareUrl: content[i].url,
+                        artworkUrls: [manga.thumbnailUrl],
+                        shareUrl: manga.url,
                     },
                 };
             }
@@ -313,22 +319,26 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
         void sinceDate;
 
         for (let i = 0; i < content.length; i++) {
-            if (sourceManga.mangaId == content[i].titleId) {
+            const manga = content[i];
+            if (!manga) continue;
+            if (sourceManga.mangaId == manga.titleId) {
                 const chapters: Chapter[] = [];
 
-                for (let j = 0; j < content[i].chapters.length; j++) {
-                    if (content[i].chapters[j].chapterId) {
+                for (let j = 0; j < manga.chapters.length; j++) {
+                    const chaptersData = manga.chapters[j];
+                    if (!chaptersData) continue;
+                    if (chaptersData.chapterId) {
                         const chapter: Chapter = {
-                            chapterId: content[i].chapters[j].chapterId,
+                            chapterId: chaptersData.chapterId,
                             sourceManga,
-                            langCode: content[i].chapters[j].languageCode
-                                ? content[i].chapters[j].languageCode
+                            langCode: chaptersData.languageCode
+                                ? chaptersData.languageCode
                                 : "EN",
-                            chapNum: content[i].chapters[j].chapterNumber
-                                ? content[i].chapters[j].chapterNumber
+                            chapNum: chaptersData.chapterNumber
+                                ? chaptersData.chapterNumber
                                 : j + 1,
-                            title: content[i].primaryTitle,
-                            volume: content[i].chapters[j].volumeNumber,
+                            title: manga.primaryTitle,
+                            volume: chaptersData.volumeNumber,
                         };
                         chapters.push(chapter);
                     }
@@ -342,13 +352,17 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
     // Populates a chapter with images
     async getChapterDetails(chapter: Chapter): Promise<ChapterDetails> {
         for (let i = 0; i < content.length; i++) {
-            if (chapter.sourceManga.mangaId == content[i].titleId) {
-                for (let j = 0; j < content[i].chapters.length; j++) {
-                    if (chapter.chapterId == content[i].chapters[j].chapterId) {
+            const manga = content[i];
+            if (!manga) continue;
+            if (chapter.sourceManga.mangaId == manga.titleId) {
+                for (let j = 0; j < manga.chapters.length; j++) {
+                    const chapterData = manga.chapters[j];
+                    if (!chapterData) continue;
+                    if (chapter.chapterId == chapterData.chapterId) {
                         const chapterDetails: ChapterDetails = {
                             id: chapter.chapterId,
                             mangaId: chapter.sourceManga.mangaId,
-                            pages: content[i].chapters[j].pages,
+                            pages: chapterData.pages,
                         };
                         return chapterDetails;
                     }

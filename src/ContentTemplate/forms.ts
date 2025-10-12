@@ -5,12 +5,13 @@
 import {
     ButtonRow,
     Form,
-    FormSectionElement,
     InputRow,
     LabelRow,
     NavigationRow,
     Section,
     ToggleRow,
+    type FormSectionElement,
+    type SelectorID,
 } from "@paperback/types";
 
 export class SettingsForm extends Form {
