@@ -1,4 +1,8 @@
-import { ContentRating, SourceInfo, SourceIntents } from "@paperback/types";
+import {
+    ContentRating,
+    SourceIntents,
+    type ExtensionInfo,
+} from "@paperback/types";
 
 export default {
     name: "Content Template",
@@ -9,10 +13,10 @@ export default {
     language: "en",
     contentRating: ContentRating.EVERYONE,
     capabilities:
-        SourceIntents.SETTINGS_UI |
-        SourceIntents.DISCOVER_SECIONS |
-        SourceIntents.MANGA_SEARCH |
-        SourceIntents.MANGA_CHAPTERS,
+        SourceIntents.SETTINGS_FORM_PROVIDING |
+        SourceIntents.DISCOVER_SECIONS_PROVIDING |
+        SourceIntents.SEARCH_RESULTS_PROVIDING |
+        SourceIntents.CHAPTER_PROVIDING,
     badges: [],
     developers: [
         {
@@ -21,4 +25,4 @@ export default {
             github: "https://github.com/Celarye",
         },
     ],
-} satisfies SourceInfo;
+} satisfies ExtensionInfo;

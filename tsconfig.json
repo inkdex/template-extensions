@@ -10,8 +10,8 @@
         // See also https://aka.ms/tsconfig/module
         "module": "preserve",
         "moduleResolution": "bundler",
-        "lib": ["esnext"],
-        "target": "esnext",
+        "lib": ["es2022"],
+        "target": "es2022",
         "types": [],
         "resolveJsonModule": true,
 
