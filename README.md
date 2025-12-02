@@ -6,8 +6,8 @@ This includes the following:
 
 - Package config
 - TypeScript config
-- ESLint config
-- Prettier config
+- oxlint config
+- oxfmt config
 - Dependabot config
 - Development setup
 - Husky pre-push hook
