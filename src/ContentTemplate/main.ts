@@ -1,3 +1,6 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+/* Copyright © 2025 Inkdex */
+
 // TODO:
 // - Fix exclude search
 // - Add the English name to the title view
