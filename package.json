@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "lint": "oxlint --type-aware --fix",
-    "lint:check": "oxlint --type-aware",
+    "lint:check": "oxlint --type-aware --deny-warnings",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "tsc": "tsc",
