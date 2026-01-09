@@ -7,18 +7,3 @@ updates:
     schedule:
       interval: weekly
       day: monday
-    groups:
-      security:
-        applies-to: security-updates
-        patterns:
-          - "*"
-      minor_patch:
-        update-types:
-          - minor
-          - patch
-      major:
-        update-types:
-          - major
-      pre_release:
-        patterns:
-          - "*"
