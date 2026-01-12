@@ -17,4 +17,4 @@ updates:
           - major
       pre-release:
         patterns:
-          - "*"
+          - "*-*"
