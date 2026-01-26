@@ -20,9 +20,9 @@
     "@paperback/toolchain": "^1.0.0-alpha.57",
     "@paperback/types": "^1.0.0-alpha.57",
     "husky": "^9.1.7",
-    "oxfmt": "^0.25.0",
-    "oxlint": "^1.40.0",
-    "oxlint-tsgolint": "^0.11.0",
+    "oxfmt": "^0.26.0",
+    "oxlint": "^1.41.0",
+    "oxlint-tsgolint": "^0.11.2",
     "typescript": "^5.9.3"
   },
   "repositoryName": "Template Extensions (0.9)"
