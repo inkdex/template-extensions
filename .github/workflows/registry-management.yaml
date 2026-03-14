@@ -7,6 +7,9 @@ on:
     types:
       - completed
 
+permissions:
+  actions: write
+
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
@@ -18,7 +21,7 @@ jobs:
     steps:
       - name: Registry Management Workflow Dispatch
         env:
-          GH_TOKEN: ${{ secrets.REGISTRY_MANAGEMENT }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh api \
             --method POST \
