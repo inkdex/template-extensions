@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: GPL-3.0-or-later */
-/* Copyright © 2025 Inkdex */
+/* Copyright © 2026 Inkdex */
 
 import { ContentRating, SourceIntents, type ExtensionInfo } from "@paperback/types";
 
@@ -12,8 +12,8 @@ export default {
   contentRating: ContentRating.EVERYONE,
   capabilities:
     SourceIntents.SETTINGS_FORM_PROVIDING |
-    SourceIntents.DISCOVER_SECIONS_PROVIDING |
-    SourceIntents.SEARCH_RESULTS_PROVIDING |
+    SourceIntents.DISCOVER_SECTION_PROVIDING |
+    SourceIntents.SEARCH_RESULT_PROVIDING |
     SourceIntents.CHAPTER_PROVIDING,
   badges: [],
   developers: [
