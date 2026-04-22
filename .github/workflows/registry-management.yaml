@@ -7,9 +7,6 @@ on:
     types:
       - completed
 
-permissions:
-  actions: write
-
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
@@ -19,9 +16,16 @@ jobs:
     name: Registry Management
     runs-on: ubuntu-latest
     steps:
+      - name: Generate App Token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.REGISTRY_MANAGEMENT_APP_ID }}
+          client-key: ${{ secrets.REGISTRY_MANAGEMENT_APP_SECRET }}
+
       - name: Registry Management Workflow Dispatch
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           gh api \
             --method POST \
