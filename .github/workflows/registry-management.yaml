@@ -22,6 +22,7 @@ jobs:
         with:
           client-id: ${{ vars.REGISTRY_MANAGEMENT_APP_ID }}
           private-key: ${{ secrets.REGISTRY_MANAGEMENT_APP_SECRET }}
+          repositories: extensions
 
       - name: Registry Management Workflow Dispatch
         env:
