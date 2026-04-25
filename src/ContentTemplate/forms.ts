@@ -13,12 +13,11 @@ import {
   NavigationRow,
   Section,
   ToggleRow,
-  type FormSectionElement,
   type SelectorID,
 } from "@paperback/types";
 
 export class SettingsForm extends Form {
-  override getSections(): FormSectionElement[] {
+  override getSections() {
     return [
       Section("playground", [
         NavigationRow("playground", {
@@ -58,7 +57,7 @@ class SourceUIPlaygroundForm extends Form {
   rowsVisible = new State(this, false);
   items: string[] = [];
 
-  override getSections(): FormSectionElement[] {
+  override getSections() {
     return [
       Section("hideStuff", [
         ToggleRow("toggle", {
