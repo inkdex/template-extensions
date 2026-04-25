@@ -32,6 +32,7 @@ import {
   type Tag,
   type TagSection,
 } from "@paperback/types";
+
 // Template content file
 import content from "./content.json";
 // Extension forms file
