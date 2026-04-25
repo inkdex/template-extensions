@@ -1,11 +1,11 @@
 {
-  "buildTime": "2026-04-22T18:42:10.678Z",
+  "buildTime": "2026-04-25T18:11:40.651Z",
   "builtWith": {
-    "toolchain": "1.0.0-alpha.64",
-    "types": "1.0.0-alpha.64"
+    "toolchain": "1.0.0-alpha.74",
+    "types": "1.0.0-alpha.74"
   },
   "repository": {
-    "name": "template-extensions",
+    "name": "Template Extensions (0.9)",
     "description": "Paperback extensions designed as templates to help developers get started quickly. Maintained by Inkdex."
   },
   "sources": [
