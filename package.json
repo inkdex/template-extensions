@@ -20,8 +20,8 @@
     "@paperback/toolchain": "^1.0.0-alpha.74",
     "@paperback/types": "^1.0.0-alpha.74",
     "husky": "^9.1.7",
-    "oxfmt": "^0.47.0",
-    "oxlint": "^1.62.0",
+    "oxfmt": "^0.49.0",
+    "oxlint": "^1.64.0",
     "oxlint-tsgolint": "^0.22.1",
     "typescript": "^6.0.3"
   }
