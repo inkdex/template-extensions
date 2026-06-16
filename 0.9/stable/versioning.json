@@ -1,8 +1,8 @@
 {
-  "buildTime": "2026-05-08T22:53:42.889Z",
+  "buildTime": "2026-06-16T14:26:35.686Z",
   "builtWith": {
-    "toolchain": "1.0.0-alpha.74",
-    "types": "1.0.0-alpha.74"
+    "toolchain": "1.0.0-alpha.92",
+    "types": "1.0.0-alpha.92"
   },
   "repository": {
     "name": "Template Extensions (0.9)",
@@ -12,11 +12,16 @@
     {
       "name": "Content Template",
       "description": "Template that shows the functionality of content providing extensions.",
-      "version": "1.0.0-alpha.3",
+      "version": "1.0.0-alpha.4",
       "icon": "icon.png",
       "language": "en",
       "contentRating": "SAFE",
-      "capabilities": 101,
+      "capabilities": [
+        32,
+        4,
+        64,
+        1
+      ],
       "badges": [],
       "developers": [
         {
