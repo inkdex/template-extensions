@@ -14,20 +14,16 @@ import {
   ContentRating,
   DiscoverSectionType,
   Form,
+  type AdvancedSearchForm,
   type Chapter,
   type ChapterDetails,
-  type ChapterProviding,
   type DiscoverSection,
   type DiscoverSectionItem,
-  type DiscoverSectionProviding,
-  type Extension,
-  type MangaProviding,
+  type ExtensionImpl,
   type PagedResults,
-  type SearchFilter,
   type SearchQuery,
   type SearchResultItem,
-  type SearchResultsProviding,
-  type SettingsFormProviding,
+  type SortingOption,
   type SourceManga,
   type Tag,
   type TagSection,
@@ -36,20 +32,14 @@ import {
 // Template content file
 import content from "./content.json";
 // Extension forms file
-import { SettingsForm } from "./forms";
+import { ContentTemplateAdvancedSearchForm, SettingsForm } from "./forms";
+import type { ContentTemplateSearchMetadata } from "./models";
 // Extension network file
 import { MainInterceptor } from "./network";
-
-// Should match the capabilities which you defined in pbconfig.ts
-type ContentTemplateImplementation = SettingsFormProviding &
-  Extension &
-  DiscoverSectionProviding &
-  SearchResultsProviding &
-  MangaProviding &
-  ChapterProviding;
+import type ContentTemplateConfig from "./pbconfig";
 
 // Main extension class
-export class ContentTemplateExtension implements ContentTemplateImplementation {
+export class ContentTemplateExtension implements ExtensionImpl<typeof ContentTemplateConfig> {
   // Implementation of the main rate limiter
   mainRateLimiter = new BasicRateLimiter("main", {
     numberOfRequests: 15,
@@ -144,28 +134,24 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
     };
   }
 
-  // Populate search filters
-  async getSearchFilters(): Promise<SearchFilter[]> {
-    return [
-      {
-        id: "search-filter-template",
-        type: "dropdown",
-        options: [
-          { id: "include", value: "include" },
-          { id: "exclude", value: "exclude" },
-        ],
-        value: "Exclude",
-        title: "Search Filter Template",
-      },
-    ];
+  // Populates search filters in a form
+  async getAdvancedSearchForm(
+    query: SearchQuery<ContentTemplateSearchMetadata>,
+  ): Promise<AdvancedSearchForm> {
+    return new ContentTemplateAdvancedSearchForm(query);
   }
 
   // Populates search
   async getSearchResults(
-    query: SearchQuery,
+    query: SearchQuery<ContentTemplateSearchMetadata>,
     metadata?: number,
+    sortingOption?: SortingOption,
   ): Promise<PagedResults<SearchResultItem>> {
     void metadata;
+    void sortingOption;
+
+    // Filter values now arrive via the advanced search form metadata instead of `query.filters`
+    const mode = query.metadata?.mode ?? "include";
 
     const results: PagedResults<SearchResultItem> = { items: [] };
 
@@ -174,9 +160,9 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
       if (!manga) continue;
       if (
         (manga.primaryTitle.toLowerCase().indexOf(query.title.toLowerCase()) != -1 &&
-          query.filters[0]?.value == "include") ||
+          mode == "include") ||
         (manga.primaryTitle.toLowerCase().indexOf(query.title.toLowerCase()) == -1 &&
-          query.filters[0]?.value == "exclude")
+          mode == "exclude")
       ) {
         if (manga.titleId) {
           const result: SearchResultItem = {
@@ -193,9 +179,9 @@ export class ContentTemplateExtension implements ContentTemplateImplementation {
           if (!secondaryTitles) continue;
           if (
             (secondaryTitles.toLowerCase().indexOf(query.title.toLowerCase()) != -1 &&
-              query.filters[0]?.value == "include") ||
+              mode == "include") ||
             (secondaryTitles.toLowerCase().indexOf(query.title.toLowerCase()) == -1 &&
-              query.filters[0]?.value == "exclude")
+              mode == "exclude")
           ) {
             if (manga.titleId) {
               const result: SearchResultItem = {

@@ -2,19 +2,22 @@
 /* Copyright © 2025 Inkdex */
 
 // TODO:
-// - Remove the State class
 // - Add extension specific settings
 
 import {
+  AdvancedSearchForm,
   ButtonRow,
   Form,
   InputRow,
   LabelRow,
   NavigationRow,
   Section,
+  SelectRow,
   ToggleRow,
-  type SelectorID,
+  type SearchQuery,
 } from "@paperback/types";
+
+import { MODE_OPTIONS, type ContentTemplateSearchMetadata } from "./models";
 
 export class SettingsForm extends Form {
   override getSections() {
@@ -29,80 +32,107 @@ export class SettingsForm extends Form {
   }
 }
 
-class State<T> {
-  private _value: T;
-  public get value(): T {
-    return this._value;
-  }
-
-  public get selector(): SelectorID<(value: T) => Promise<void>> {
-    return Application.Selector(this as State<T>, "updateValue");
-  }
-
-  constructor(
-    private form: Form,
-    value: T,
-  ) {
-    this._value = value;
-  }
-
-  public async updateValue(value: T): Promise<void> {
-    this._value = value;
-    this.form.reloadForm();
-  }
-}
-
 class SourceUIPlaygroundForm extends Form {
-  inputValue = new State(this, "");
-  rowsVisible = new State(this, false);
-  items: string[] = [];
+  private inputValue = "";
+  private rowsVisible = false;
+  private items: string[] = [];
 
   override getSections() {
     return [
       Section("hideStuff", [
         ToggleRow("toggle", {
           title: "Toggles can hide rows",
-          value: this.rowsVisible.value,
-          onValueChange: this.rowsVisible.selector,
+          value: this.rowsVisible,
+          onValueChange: Application.Selector(
+            this as SourceUIPlaygroundForm,
+            "handleRowsVisibleChange",
+          ),
         }),
       ]),
 
-      ...(() =>
-        this.rowsVisible.value
-          ? [
-              Section("hiddenSection", [
-                InputRow("input", {
-                  title: "Dynamic Input",
-                  value: this.inputValue.value,
-                  onValueChange: this.inputValue.selector,
-                }),
-
-                LabelRow("boundLabel", {
-                  title: "Bound label to input",
-                  subtitle: "This label updates with the input",
-                  value: this.inputValue.value,
-                }),
-              ]),
-
-              Section("items", [
-                ...this.items.map((item) =>
-                  LabelRow(item, {
-                    title: item,
-                  }),
+      ...(this.rowsVisible
+        ? [
+            Section("hiddenSection", [
+              InputRow("input", {
+                title: "Dynamic Input",
+                value: this.inputValue,
+                onValueChange: Application.Selector(
+                  this as SourceUIPlaygroundForm,
+                  "handleInputChange",
                 ),
+              }),
 
-                ButtonRow("addNewItem", {
-                  title: "Add New Item",
-                  onSelect: Application.Selector(this as SourceUIPlaygroundForm, "addNewItem"),
+              LabelRow("boundLabel", {
+                title: "Bound label to input",
+                subtitle: "This label updates with the input",
+                value: this.inputValue,
+              }),
+            ]),
+
+            Section("items", [
+              ...this.items.map((item) =>
+                LabelRow(item, {
+                  title: item,
                 }),
-              ]),
-            ]
-          : [])(),
+              ),
+
+              ButtonRow("addNewItem", {
+                title: "Add New Item",
+                onSelect: Application.Selector(this as SourceUIPlaygroundForm, "addNewItem"),
+              }),
+            ]),
+          ]
+        : []),
     ];
+  }
+
+  async handleRowsVisibleChange(value: boolean): Promise<void> {
+    this.rowsVisible = value;
+    this.reloadForm();
+  }
+
+  async handleInputChange(value: string): Promise<void> {
+    this.inputValue = value;
+    this.reloadForm();
   }
 
   async addNewItem(): Promise<void> {
     this.items.push("Item " + (this.items.length + 1));
     this.reloadForm();
+  }
+}
+
+export class ContentTemplateAdvancedSearchForm extends AdvancedSearchForm {
+  private mode: "include" | "exclude";
+
+  constructor(searchQuery: SearchQuery<ContentTemplateSearchMetadata>) {
+    super();
+    this.mode = searchQuery.metadata?.mode ?? "include";
+  }
+
+  override getSections() {
+    return [
+      Section("filter", [
+        SelectRow("mode", {
+          title: "Search Filter Template",
+          value: [this.mode],
+          options: MODE_OPTIONS,
+          minItemCount: 1,
+          maxItemCount: 1,
+          onValueChange: Application.Selector(
+            this as ContentTemplateAdvancedSearchForm,
+            "handleModeChange",
+          ),
+        }),
+      ]),
+    ];
+  }
+
+  async handleModeChange(value: string[]): Promise<void> {
+    this.mode = value[0] === "exclude" ? "exclude" : "include";
+  }
+
+  override getSearchQueryMetadata(): ContentTemplateSearchMetadata {
+    return { mode: this.mode };
   }
 }
