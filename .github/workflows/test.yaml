@@ -1,8 +1,18 @@
-name: Test
+name: Run Tests
 
 on:
+  workflow_run:
+    workflows:
+      - Bundle and Deploy
+    types:
+      - completed
+  schedule:
+    - cron: "0 * * * *"
   pull_request:
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -10,7 +20,7 @@ concurrency:
 
 jobs:
   test:
-    name: Test
+    name: Run Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Branch
@@ -24,3 +34,9 @@ jobs:
         run: npm ci
       - name: Run Tests
         run: npm test
+      - name: Upload Test Results
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: tests.json
+          path: bundles/tests.json

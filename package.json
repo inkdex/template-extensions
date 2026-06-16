@@ -4,16 +4,17 @@
   "description": "Paperback extensions designed as templates to help developers get started quickly. Maintained by Inkdex.",
   "type": "module",
   "scripts": {
+    "tsc": "tsc",
     "lint": "oxlint --type-aware --fix",
     "lint:check": "oxlint --type-aware --deny-warnings",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
-    "tsc": "tsc",
+    "conformance": "npm run tsc && npm run lint:check && npm run format:check",
     "bundle": "paperback-cli bundle",
     "serve": "paperback-cli serve",
-    "logcat": "paperback-cli logcat",
     "dev": "paperback-cli serve --watch",
-    "test": "npm run tsc && npm run lint:check && npm run format:check && npm run bundle",
+    "logcat": "paperback-cli logcat",
+    "test": "paperback-cli test --noConsole --output ./bundles/tests.json",
     "prepare": "husky"
   },
   "devDependencies": {
