@@ -21,9 +21,9 @@
     "@paperback/toolchain": "^1.0.0-alpha.92",
     "@paperback/types": "^1.0.0-alpha.92",
     "husky": "^9.1.7",
-    "oxfmt": "^0.73.0",
-    "oxlint": "^1.88.0",
-    "oxlint-tsgolint": "^7.0.2004",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
+    "oxlint-tsgolint": "^7.0.2005",
     "typescript": "^7.0.2"
   }
 }
